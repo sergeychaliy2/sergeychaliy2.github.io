@@ -300,47 +300,90 @@
     const cv = document.getElementById("hero-canvas");
     if (!cv || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
     const ctx = cv.getContext("2d");
-    let w, h, pts, dpr;
-    const COUNT = window.innerWidth < 700 ? 34 : 72;
+    let w, h, pts, dpr, COUNT;
+    const LINK = 150;          // node-to-node link distance
+    const MOUSE_LINK = 220;    // node-to-cursor link distance
+    const PULL = 120;          // cursor attraction radius
+    const mouse = { x: -9999, y: -9999, on: false };
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
-      w = cv.clientWidth; h = cv.clientHeight;
+      w = window.innerWidth; h = window.innerHeight;
       cv.width = w * dpr; cv.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      COUNT = Math.max(40, Math.min(150, Math.floor((w * h) / 13000)));
     }
     function seed() {
       pts = Array.from({ length: COUNT }, () => ({
         x: Math.random() * w, y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+        vx: (Math.random() - 0.5) * 0.32, vy: (Math.random() - 0.5) * 0.32,
       }));
     }
     function tick() {
       ctx.clearRect(0, 0, w, h);
+
       for (const p of pts) {
+        // gentle attraction toward the cursor
+        if (mouse.on) {
+          const dx = mouse.x - p.x, dy = mouse.y - p.y;
+          const d = Math.hypot(dx, dy);
+          if (d < PULL && d > 1) {
+            const f = (1 - d / PULL) * 0.04;
+            p.vx += (dx / d) * f; p.vy += (dy / d) * f;
+          }
+        }
+        p.vx *= 0.99; p.vy *= 0.99;            // damping
         p.x += p.vx; p.y += p.vy;
         if (p.x < 0 || p.x > w) p.vx *= -1;
         if (p.y < 0 || p.y > h) p.vy *= -1;
+        p.x = Math.max(0, Math.min(w, p.x));
+        p.y = Math.max(0, Math.min(h, p.y));
       }
+
+      // node-to-node links
       for (let i = 0; i < pts.length; i++) {
         for (let j = i + 1; j < pts.length; j++) {
           const dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
           const d = Math.hypot(dx, dy);
-          if (d < 130) {
-            ctx.strokeStyle = `rgba(120,160,255,${(1 - d / 130) * 0.32})`;
+          if (d < LINK) {
+            ctx.strokeStyle = `rgba(120,160,255,${(1 - d / LINK) * 0.30})`;
             ctx.lineWidth = 1;
             ctx.beginPath(); ctx.moveTo(pts[i].x, pts[i].y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
           }
         }
       }
+
+      // node-to-cursor links + highlight
+      if (mouse.on) {
+        for (const p of pts) {
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          const d = Math.hypot(dx, dy);
+          if (d < MOUSE_LINK) {
+            const a = 1 - d / MOUSE_LINK;
+            ctx.strokeStyle = `rgba(80,230,224,${a * 0.55})`;
+            ctx.lineWidth = 1.2;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+            ctx.fillStyle = `rgba(120,240,235,${0.5 + a * 0.5})`;
+            ctx.beginPath(); ctx.arc(p.x, p.y, 1.6 + a * 1.8, 0, Math.PI * 2); ctx.fill();
+          }
+        }
+        // cursor node
+        ctx.fillStyle = "rgba(120,240,235,.95)";
+        ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 3, 0, Math.PI * 2); ctx.fill();
+      }
+
+      // base nodes
       for (const p of pts) {
         ctx.fillStyle = "rgba(150,190,255,.8)";
         ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2); ctx.fill();
       }
       requestAnimationFrame(tick);
     }
+
     resize(); seed(); tick();
     window.addEventListener("resize", () => { resize(); seed(); });
+    window.addEventListener("mousemove", (e) => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.on = true; }, { passive: true });
+    window.addEventListener("mouseout", () => { mouse.on = false; });
   }
 
   /* ---------- reveal on scroll ---------- */

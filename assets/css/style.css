@@ -58,7 +58,7 @@ html[data-lang="en"] .lang-ru{ display:none !important }
 html[data-lang="ru"] .lang-en{ display:none !important }
 
 /* ---------- Ambient background ---------- */
-.bg-aurora{ position:fixed; inset:0; z-index:-2; overflow:hidden; pointer-events:none }
+.bg-aurora{ position:fixed; inset:0; z-index:-3; overflow:hidden; pointer-events:none }
 .bg-aurora::before,.bg-aurora::after{
   content:""; position:absolute; border-radius:50%;
   filter:blur(90px); opacity:.5; mix-blend-mode:screen;
@@ -74,7 +74,7 @@ html[data-lang="ru"] .lang-en{ display:none !important }
   animation:float2 26s var(--ease) infinite;
 }
 .bg-grid{
-  position:fixed; inset:0; z-index:-2; pointer-events:none; opacity:.4;
+  position:fixed; inset:0; z-index:-3; pointer-events:none; opacity:.4;
   background-image:
     linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
@@ -168,8 +168,8 @@ h2.section-title{ font-size:clamp(28px,4.5vw,44px); margin-bottom:14px }
 .btn svg{ width:18px; height:18px }
 
 /* ---------- Hero ---------- */
-.hero{ min-height:100svh; display:flex; align-items:center; padding-top:120px; position:relative; overflow:hidden }
-#hero-canvas{ position:absolute; inset:0; z-index:0; opacity:.65 }
+.hero{ min-height:100svh; display:flex; align-items:center; padding-top:120px; position:relative }
+#hero-canvas{ position:fixed; inset:0; width:100vw; height:100vh; z-index:-2; opacity:.7; pointer-events:none }
 .hero .wrap{ position:relative; z-index:2 }
 .hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center }
 .hero-badge{
