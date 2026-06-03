@@ -296,6 +296,14 @@
   }
 
   /* ---------- hero canvas (particle constellation) ---------- */
+  // Ensure the background network canvas exists on every page
+  function ensureNetCanvas() {
+    if (document.getElementById("hero-canvas")) return;
+    const c = document.createElement("canvas");
+    c.id = "hero-canvas";
+    document.body.insertBefore(c, document.body.firstChild);
+  }
+
   function heroCanvas() {
     const cv = document.getElementById("hero-canvas");
     if (!cv || matchMedia("(prefers-reduced-motion:reduce)").matches) return;
@@ -431,6 +439,7 @@
     renderFeatured();
     if (document.getElementById("projects-grid")) renderProjects("all");
     document.querySelectorAll(".hero-visual .tilt-stack").forEach((s) => attachTilt(s, 8));
+    ensureNetCanvas();
     heroCanvas();
     counters();
     observeReveal(document);
