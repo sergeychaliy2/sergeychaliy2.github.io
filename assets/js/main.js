@@ -296,6 +296,35 @@
   }
 
   /* ---------- hero canvas (particle constellation) ---------- */
+  // Static neural-net (MLP-style) motif in the top-left corner — all pages
+  function buildCornerNet() {
+    if (document.getElementById("corner-net")) return;
+    const L = [
+      [[40, 55], [40, 110], [40, 165], [40, 220]],
+      [[130, 30], [130, 80], [130, 130], [130, 180], [130, 230]],
+      [[220, 80], [220, 130], [220, 180]],
+    ];
+    let lines = "";
+    for (let k = 0; k < L.length - 1; k++)
+      for (const a of L[k])
+        for (const b of L[k + 1])
+          lines += `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="url(#cn)" stroke-width="1" opacity=".45"/>`;
+    let nodes = "";
+    for (const layer of L)
+      for (const p of layer)
+        nodes += `<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="url(#cn)"/>`;
+    const div = document.createElement("div");
+    div.id = "corner-net";
+    div.setAttribute("aria-hidden", "true");
+    div.innerHTML =
+      `<svg viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="cn" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#2fe6e0"/><stop offset=".5" stop-color="#4d7dff"/><stop offset="1" stop-color="#9a6bff"/>
+        </linearGradient></defs>${lines}${nodes}
+      </svg>`;
+    document.body.appendChild(div);
+  }
+
   // Ensure the background network canvas exists on every page
   function ensureNetCanvas() {
     if (document.getElementById("hero-canvas")) return;
@@ -439,6 +468,7 @@
     renderFeatured();
     if (document.getElementById("projects-grid")) renderProjects("all");
     document.querySelectorAll(".hero-visual .tilt-stack").forEach((s) => attachTilt(s, 8));
+    buildCornerNet();
     ensureNetCanvas();
     heroCanvas();
     counters();

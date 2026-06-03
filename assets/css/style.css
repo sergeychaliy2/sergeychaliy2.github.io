@@ -86,6 +86,16 @@ html[data-lang="ru"] .lang-en{ display:none !important }
   position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+/* static neural-net motif, top-left corner (all pages) */
+#corner-net{
+  position:fixed; top:-8px; left:-12px; z-index:-1; pointer-events:none;
+  opacity:.55; filter:drop-shadow(0 0 9px rgba(77,125,255,.45));
+}
+#corner-net svg{ width:240px; height:240px; display:block }
+#corner-net .cn-node{ animation:cnpulse 3.6s ease-in-out infinite }
+@keyframes cnpulse{ 0%,100%{ opacity:.7 } 50%{ opacity:1 } }
+@media (max-width:680px){ #corner-net{ opacity:.4 } #corner-net svg{ width:150px; height:150px } }
+
 @keyframes float1{ 50%{ transform:translate(8vw,6vw) scale(1.15) } }
 @keyframes float2{ 50%{ transform:translate(-6vw,-5vw) scale(1.1) } }
 
