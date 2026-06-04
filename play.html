@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ru" data-lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Neural Slice — Sergey Chaliy</title>
+  <meta name="description" content="Neural Slice — браузерная slice-аркада. Чистая архитектура на JS: ECS-системы, EventBus, Object Pool, fixed-timestep loop. Играй прямо в браузере.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/game.css">
+</head>
+<body>
+  <div class="bg-aurora"></div>
+  <div class="bg-grid"></div>
+  <div class="bg-noise"></div>
+
+  <header id="site-header"></header>
+
+  <section class="play-section">
+    <div class="wrap">
+      <div class="section-head play-head" data-reveal>
+        <span class="eyebrow"><span class="lang-ru">Аркада в браузере</span><span class="lang-en">Browser arcade</span></span>
+        <h1 class="play-title">Neural&nbsp;Slice</h1>
+        <p class="section-sub">
+          <span class="lang-ru">Режь нейро-узлы свайпом, собирай комбо и не задень <b style="color:var(--magenta)">красные баги</b>. Написано на чистом JS с архитектурой как в продакшене.</span>
+          <span class="lang-en">Swipe to slice the neuro-nodes, chain combos and avoid the <b style="color:var(--magenta)">red bugs</b>. Built in vanilla JS with production-grade architecture.</span>
+        </p>
+      </div>
+
+      <div class="arcade" id="arcade" data-reveal>
+        <!-- HUD -->
+        <div class="hud">
+          <div class="hud-score">
+            <span class="hud-label"><span class="lang-ru">Счёт</span><span class="lang-en">Score</span></span>
+            <span id="hud-score">0</span>
+          </div>
+          <div class="hud-side">
+            <div class="hud-best">
+              <span class="hud-label"><span class="lang-ru">Рекорд</span><span class="lang-en">Best</span></span>
+              <span id="hud-best">0</span>
+            </div>
+            <div class="hud-lives" id="hud-lives"></div>
+          </div>
+        </div>
+
+        <button class="pause-btn" id="pause-btn" aria-label="Pause" style="display:none">
+          <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        </button>
+
+        <canvas id="game-canvas"></canvas>
+        <div class="fx-layer" id="fx-layer"></div>
+
+        <!-- START -->
+        <div class="g-overlay show" id="ov-start">
+          <div class="g-card glass">
+            <div class="g-logo"><span></span><span></span><span></span></div>
+            <h2><span class="lang-ru">Готов?</span><span class="lang-en">Ready?</span></h2>
+            <p>
+              <span class="lang-ru">Веди указателем (или пальцем) сквозь узлы, чтобы разрезать их. Бомбы-баги и пропущенные узлы стоят жизни.</span>
+              <span class="lang-en">Drag the pointer (or finger) through nodes to slice them. Bug-bombs and missed nodes cost a life.</span>
+            </p>
+            <button class="btn btn-primary g-btn" id="btn-start">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              <span class="lang-ru">Играть</span><span class="lang-en">Play</span>
+            </button>
+            <span class="g-hint"><span class="lang-ru">Пробел — пауза</span><span class="lang-en">Space — pause</span></span>
+          </div>
+        </div>
+
+        <!-- PAUSE -->
+        <div class="g-overlay" id="ov-pause">
+          <div class="g-card glass">
+            <h2><span class="lang-ru">Пауза</span><span class="lang-en">Paused</span></h2>
+            <button class="btn btn-primary g-btn" id="btn-resume">
+              <span class="lang-ru">Продолжить</span><span class="lang-en">Resume</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- GAME OVER -->
+        <div class="g-overlay" id="ov-over">
+          <div class="g-card glass">
+            <h2><span class="lang-ru">Игра окончена</span><span class="lang-en">Game over</span></h2>
+            <div class="g-score-row">
+              <div><span class="hud-label"><span class="lang-ru">Счёт</span><span class="lang-en">Score</span></span><strong id="ov-final-score">0</strong></div>
+              <div><span class="hud-label"><span class="lang-ru">Рекорд</span><span class="lang-en">Best</span></span><strong id="ov-final-best">0</strong></div>
+            </div>
+            <span class="g-newbest" id="ov-newbest" style="display:none"><span class="lang-ru">🏆 Новый рекорд!</span><span class="lang-en">🏆 New best!</span></span>
+            <button class="btn btn-primary g-btn" id="btn-restart">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7M3 3v4h4"/></svg>
+              <span class="lang-ru">Ещё раз</span><span class="lang-en">Play again</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- architecture note -->
+      <div class="play-arch" data-reveal>
+        <h3><span class="lang-ru">Что под капотом</span><span class="lang-en">Under the hood</span></h3>
+        <p>
+          <span class="lang-ru">Не «один большой update». Игра разбита по принципам, которые я применяю в Unity-проектах: данные отдельно от логики, системы общаются через события, никаких глобалов.</span>
+          <span class="lang-en">Not one giant update loop. It's split along the same principles I use in Unity projects: data apart from logic, systems talk via events, no globals.</span>
+        </p>
+        <div class="arch-chips">
+          <span class="chip">Fixed-timestep loop</span>
+          <span class="chip">ECS-style systems</span>
+          <span class="chip">EventBus (pub/sub)</span>
+          <span class="chip">Object Pool · GC-friendly</span>
+          <span class="chip">State Machine</span>
+          <span class="chip">DI / composition root</span>
+          <span class="chip">Pointer + touch input</span>
+          <span class="chip">Vanilla JS · 0 deps</span>
+        </div>
+        <a class="btn btn-ghost" id="src-link" href="https://github.com/sergeychaliy2/sergeychaliy2.github.io/tree/main/assets/js/game" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-1.7c-3.2.7-3.9-1.6-3.9-1.6-.5-1.3-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          <span class="lang-ru">Исходный код игры</span><span class="lang-en">Game source code</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/game/bootstrap.js"></script>
+</body>
+</html>

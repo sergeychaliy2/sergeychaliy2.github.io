@@ -30,6 +30,7 @@
   const PAGES = [
     { href: "index.html",    ru: "Главная",   en: "Home" },
     { href: "projects.html", ru: "Проекты",   en: "Projects" },
+    { href: "play.html",     ru: "Игра",      en: "Play" },
     { href: "about.html",    ru: "Обо мне",   en: "About" },
     { href: "contact.html",  ru: "Контакты",  en: "Contact" },
   ];
@@ -240,8 +241,16 @@
 
     const media = document.getElementById("lb-media");
     const showImg = (src) => { media.innerHTML = `<img src="${src}" alt="${t(p.title)}">`; };
-    if (p.yt) media.innerHTML = `<iframe src="https://www.youtube.com/embed/${p.yt}?rel=0" title="${t(p.title)}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`;
-    else showImg(p.img[0]);
+    const loadVideo = () => {
+      media.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${p.yt}?rel=0&autoplay=1&playsinline=1" title="${t(p.title)}" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>`;
+    };
+    if (p.yt) {
+      // Facade: show local poster + play button, load the YouTube player only on click.
+      // Avoids the intermittent "connected to a different network" player error and
+      // keeps the lightbox instant when there is no need to watch the video.
+      media.innerHTML = `<button type="button" class="lb-play" aria-label="${t(UI.watchDemo)}" style="background-image:url('${p.img[0]}')">${ICON.play}</button>`;
+      media.querySelector(".lb-play").addEventListener("click", loadVideo);
+    } else showImg(p.img[0]);
 
     const thumbs = document.getElementById("lb-thumbs");
     const localImgs = p.img.filter((s) => s.indexOf("http") !== 0);

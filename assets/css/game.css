@@ -1,0 +1,145 @@
+/* =========================================================
+   game.css — Neural Slice (play.html)
+   Reuses the site's tokens from style.css
+   ========================================================= */
+
+.play-section{ padding:120px 0 80px; position:relative }
+.play-head{ text-align:center; margin-inline:auto }
+.play-title{
+  font-family:var(--display); font-weight:700;
+  font-size:clamp(40px,8vw,78px); line-height:1; letter-spacing:-.03em;
+  background:linear-gradient(120deg,#fff, var(--cyan) 40%, var(--violet));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  margin:6px 0 14px;
+  filter:drop-shadow(0 6px 30px rgba(77,125,255,.35));
+}
+.play-head .section-sub{ max-width:620px; margin-inline:auto }
+
+/* ---------- arcade frame ---------- */
+.arcade{
+  position:relative;
+  width:100%; max-width:1000px; margin:34px auto 0;
+  aspect-ratio:16/10; max-height:74vh;
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid var(--border-2);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(77,125,255,.10), transparent 60%),
+    linear-gradient(180deg, rgba(10,12,22,.72), rgba(6,7,13,.85));
+  box-shadow:var(--shadow), inset 0 0 0 1px rgba(255,255,255,.03), 0 0 60px -20px rgba(77,125,255,.5);
+  -webkit-user-select:none; user-select:none;
+}
+.arcade::before{ /* inner play-field grid */
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:0; opacity:.5;
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%, #000 40%, transparent 85%);
+          mask-image:radial-gradient(ellipse 80% 70% at 50% 45%, #000 40%, transparent 85%);
+}
+#game-canvas{
+  position:absolute; inset:0; width:100%; height:100%;
+  display:block; z-index:1; cursor:crosshair;
+  touch-action:none;
+}
+.fx-layer{ position:absolute; inset:0; z-index:4; pointer-events:none; overflow:hidden }
+
+/* ---------- HUD ---------- */
+.hud{
+  position:absolute; inset:14px 16px auto 16px; z-index:5;
+  display:flex; justify-content:space-between; align-items:flex-start;
+  pointer-events:none; font-family:var(--display);
+}
+.hud-label{
+  display:block; font-size:10.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); font-weight:600; margin-bottom:2px;
+}
+.hud-score{ font-size:clamp(26px,4.5vw,40px); font-weight:700; line-height:1;
+  text-shadow:0 2px 24px rgba(47,230,224,.45) }
+.hud-side{ display:flex; flex-direction:column; align-items:flex-end; gap:8px }
+.hud-best{ text-align:right; font-size:clamp(15px,2.4vw,20px); font-weight:600; color:var(--text) }
+.hud-lives{ display:flex; gap:5px }
+.hud-lives .life{ width:24px; height:24px; transition:transform .25s var(--ease), opacity .25s }
+.hud-lives .life.on{ fill:#ff5a76; filter:drop-shadow(0 0 6px rgba(255,90,118,.7)) }
+.hud-lives .life.off{ fill:rgba(255,255,255,.14) }
+
+.pause-btn{
+  position:absolute; top:12px; left:50%; transform:translateX(-50%); z-index:6;
+  width:40px; height:40px; border-radius:50%;
+  display:grid; place-items:center; color:var(--text);
+  background:var(--surface-2); border:1px solid var(--border-2); backdrop-filter:blur(8px);
+  transition:transform .2s var(--ease), background .2s;
+}
+.pause-btn svg{ width:18px; height:18px }
+.pause-btn:hover{ background:rgba(255,255,255,.12); transform:translateX(-50%) scale(1.08) }
+
+/* ---------- combo popups ---------- */
+.combo-pop{
+  position:absolute; transform:translate(-50%,-50%);
+  font-family:var(--display); font-weight:700; font-size:22px; white-space:nowrap;
+  color:#fff; text-shadow:0 2px 18px rgba(154,107,255,.9);
+  background:linear-gradient(120deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  animation:comboPop .75s var(--ease) forwards; pointer-events:none;
+}
+@keyframes comboPop{
+  0%{ opacity:0; transform:translate(-50%,-50%) scale(.5) }
+  20%{ opacity:1; transform:translate(-50%,-60%) scale(1.1) }
+  100%{ opacity:0; transform:translate(-50%,-130%) scale(1) }
+}
+
+/* ---------- overlays ---------- */
+.g-overlay{
+  position:absolute; inset:0; z-index:10;
+  display:grid; place-items:center; padding:20px;
+  background:rgba(6,7,13,.62); backdrop-filter:blur(7px);
+  opacity:0; visibility:hidden; transition:opacity .3s var(--ease), visibility .3s;
+}
+.g-overlay.show{ opacity:1; visibility:visible }
+.g-card{
+  text-align:center; max-width:420px; width:100%;
+  padding:34px 30px; border-radius:var(--radius);
+  transform:translateY(12px) scale(.98); transition:transform .35s var(--ease);
+}
+.g-overlay.show .g-card{ transform:none }
+.g-card h2{ font-size:clamp(26px,5vw,38px); margin-bottom:10px }
+.g-card p{ color:var(--muted); font-size:15px; margin-bottom:22px }
+.g-btn{ width:100%; justify-content:center; font-size:16px }
+.g-btn svg{ width:20px; height:20px }
+.g-hint{ display:block; margin-top:14px; font-size:12.5px; color:var(--faint); letter-spacing:.04em }
+
+.g-logo{ display:flex; gap:8px; justify-content:center; margin-bottom:18px }
+.g-logo span{ width:14px; height:14px; border-radius:50%;
+  background:radial-gradient(circle at 35% 35%, #fff, var(--blue));
+  box-shadow:0 0 18px rgba(77,125,255,.8); animation:logoPulse 1.6s ease-in-out infinite }
+.g-logo span:nth-child(1){ background:radial-gradient(circle at 35% 35%, #fff, var(--cyan)); box-shadow:0 0 18px rgba(47,230,224,.8) }
+.g-logo span:nth-child(3){ background:radial-gradient(circle at 35% 35%, #fff, var(--violet)); box-shadow:0 0 18px rgba(154,107,255,.8); animation-delay:.5s }
+.g-logo span:nth-child(2){ animation-delay:.25s }
+@keyframes logoPulse{ 0%,100%{ transform:translateY(0); opacity:.85 } 50%{ transform:translateY(-7px); opacity:1 } }
+
+.g-score-row{ display:flex; gap:14px; justify-content:center; margin-bottom:14px }
+.g-score-row > div{
+  flex:1; max-width:150px; padding:14px; border-radius:var(--radius-sm);
+  background:var(--surface); border:1px solid var(--border);
+}
+.g-score-row strong{ display:block; font-family:var(--display); font-size:30px; line-height:1.1 }
+.g-newbest{ display:block; margin-bottom:18px; color:var(--cyan); font-weight:600; font-size:15px }
+
+/* ---------- architecture note ---------- */
+.play-arch{ max-width:1000px; margin:42px auto 0; text-align:center }
+.play-arch h3{ font-size:22px; margin-bottom:8px }
+.play-arch > p{ color:var(--muted); max-width:640px; margin:0 auto 18px }
+.arch-chips{ display:flex; flex-wrap:wrap; gap:9px; justify-content:center; margin-bottom:24px }
+.arch-chips .chip{
+  font-size:13px; padding:7px 13px; border-radius:999px;
+  background:var(--brand-soft); border:1px solid var(--border-2); color:var(--text);
+  font-family:var(--display); font-weight:500;
+}
+#src-link svg{ margin-right:2px }
+
+@media (max-width:680px){
+  .play-section{ padding:100px 0 64px }
+  .arcade{ aspect-ratio:4/5; max-height:70vh }
+  .hud-lives .life{ width:20px; height:20px }
+}
