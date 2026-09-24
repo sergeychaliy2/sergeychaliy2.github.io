@@ -115,7 +115,7 @@
               <a href="${LINKS.github}" target="_blank" rel="noopener">GitHub</a>
               <a href="${LINKS.drive}" target="_blank" rel="noopener">Google Drive</a>
               <a href="${LINKS.tilda}" target="_blank" rel="noopener">Tilda Portfolio</a>
-              <a href="${LINKS.press}" target="_blank" rel="noopener"><span class="lang-ru">В прессе (госпортал ОАЭ)</span><span class="lang-en">Press (UAE government portal)</span></a>
+              <a href="${LINKS.press}" target="_blank" rel="noopener"><span class="lang-ru">Публикация в прессе</span><span class="lang-en">Press coverage</span></a>
             </div>
           </div>
         </div>
