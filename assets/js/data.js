@@ -37,8 +37,8 @@ const PROJECTS = [
     img:[IMG+"p19.jpg", IMG+"p18.jpg"],
     title:{ ru:"Подготовка спецподразделений", en:"Special Forces Military Training" },
     desc:{
-      ru:"VR-тренажёр тактической подготовки для государственного заказчика ОАЭ (Rabdan Academy, Абу-Даби): отработка штурмовых сценариев в фотореалистичных окружениях.",
-      en:"Tactical VR trainer for a UAE government client (Rabdan Academy, Abu Dhabi): assault scenario rehearsal in photoreal environments."
+      ru:"VR-тренажёр тактической подготовки для государственного заказчика ОАЭ (национальная учебная академия): отработка штурмовых сценариев в фотореалистичных окружениях.",
+      en:"Tactical VR trainer for a UAE government client (a national training academy): assault scenario rehearsal in photoreal environments."
     },
     tags:["Unity","Meta Quest","OpenXR","Multiplayer"]
   },
@@ -125,9 +125,9 @@ const PROJECTS = [
   {
     cat:"training",
     img:[IMG+"p41.jpg"],
-    title:{ ru:"VR-шутер для полицейской академии Дубая", en:"Dubai Police Academy — Tactical Shooter" },
+    title:{ ru:"VR-шутер для полицейской академии", en:"Police Academy — Tactical Shooter" },
     desc:{
-      ru:"Тактический VR-шутер для полицейской академии Дубая: отработка действий в нештатных ситуациях, мультиплеер и командное взаимодействие.",
+      ru:"Тактический VR-шутер для полицейской академии ОАЭ: отработка действий в нештатных ситуациях, мультиплеер и командное взаимодействие.",
       en:"A tactical VR shooter for the Dubai Police Academy: emergency-situation drills with multiplayer and team coordination."
     },
     tags:["Unity","VR","Multiplayer","Tactical"]
@@ -137,10 +137,10 @@ const PROJECTS = [
   {
     cat:"twin", featured:true,
     img:[IMG+"p04.jpg", IMG+"p32.jpg", IMG+"p44.jpg"],
-    title:{ ru:"Цифровой двойник завода «Акрон»", en:"Digital Twin — Acron Plant" },
+    title:{ ru:"Цифровой двойник химического завода", en:"Digital Twin — Chemical Plant" },
     desc:{
-      ru:"Цифровой двойник химического производства ПАО «Акрон»: интеграция BIM-модели и полной технологической логики, облачная синхронизация данных.",
-      en:"Digital twin of Acron's chemical production: BIM-model integration with full process logic and cloud data synchronisation."
+      ru:"Цифровой двойник химического производства: интеграция BIM-модели и полной технологической логики, облачная синхронизация данных.",
+      en:"Digital twin of a chemical production site: BIM-model integration with full process logic and cloud data synchronisation."
     },
     tags:["Unity","BIM","Azure","Digital Twin"]
   },
@@ -345,10 +345,10 @@ const PROJECTS = [
   {
     cat:"mobile", featured:true,
     img:[IMG+"p52.jpg"],
-    title:{ ru:"«Мой НовГУ» — приложение университета", en:"My NovSU — University App" },
+    title:{ ru:"Приложение университета", en:"University App" },
     desc:{
       ru:"Официальное мобильное приложение Новгородского университета для студентов и преподавателей: расписание, оценки, схемы корпусов и навигатор по кампусу, университетские сервисы. Опубликовано в Google Play.",
-      en:"Official mobile app of Novgorod State University for students and staff: schedule, grades, building maps and a campus navigator, plus university services. Published on Google Play."
+      en:"Official mobile app of a state university for students and staff: schedule, grades, building maps and a campus navigator, plus university services. Published on Google Play."
     },
     tags:["Android","iOS","University","Navigation"]
   },
