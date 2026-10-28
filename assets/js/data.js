@@ -227,6 +227,208 @@ const PROJECTS = [
     tags:["Unity","Mobile","Survival","Low-poly"]
   },
 
+  /* ---------- CASUAL MOBILE GAMES (UI/UX concepts) ---------- */
+  {
+    cat:"game",
+    img:[IMG+"p62.jpg"],
+    title:{ ru:"Желейный Бум — три в ряд", en:"Jelly Crush Party — Match-3" },
+    desc:{
+      ru:"Концепт игрового экрана match-3: поле 8×9, цели уровня со счётчиками, прогресс со звёздами, спец-фишки (полосатая, бомба, радужная) и панель бустеров.",
+      en:"Match-3 gameplay screen concept: an 8×9 board, level goals with counters, a star progress bar, special tiles (striped, bomb, rainbow) and a booster bar."
+    },
+    tags:["Mobile","Casual","Match-3","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p63.jpg"],
+    title:{ ru:"Ягодный Бум — приключение", en:"Berry Pop Adventures" },
+    desc:{
+      ru:"Match-3 с маскотом и двойной целью уровня: два прогресс-бара задания, комбо-подсветка с начислением очков, бустеры с остатком и нижняя навигация с кнопкой запуска.",
+      en:"Match-3 with a mascot and a two-part level goal: dual progress bars, a combo burst with score popup, boosters with counters and a bottom bar with the play button."
+    },
+    tags:["Mobile","Casual","Match-3","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p64.jpg"],
+    title:{ ru:"Садовый Бум — садовый match-3", en:"Garden Blast — Garden Match-3" },
+    desc:{
+      ru:"Садовая тема «три в ряд»: панель уровня со звёздами, цель по очкам и остатку ходов, деревянное поле с цветами и овощами, бустеры (лейка, улитка, бомба, перемешивание).",
+      en:"A garden-themed match-3: a level panel with stars, score target and remaining moves, a wooden board of flowers and vegetables, plus boosters (watering can, snail, bomb, shuffle)."
+    },
+    tags:["Mobile","Casual","Match-3","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p65.jpg"],
+    title:{ ru:"Весёлые Кубики — match-3", en:"Happy Cubes — Match-3" },
+    desc:{
+      ru:"Детский match-3 с кубо-фруктами: цель и счёт в левой панели, остаток ходов справа, вертикальная колонка бустеров (подсказка, отмена, перемешивание) и прогресс уровней.",
+      en:"A kid-friendly match-3 with cube fruits: goal and score panel, remaining moves, a vertical booster column (hint, undo, shuffle) and level progress markers."
+    },
+    tags:["Mobile","Casual","Match-3","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p66.jpg"],
+    title:{ ru:"Зачарованная Роща — фэнтези match-3", en:"Enchanted Grove — Fantasy Match-3" },
+    desc:{
+      ru:"Фэнтезийный match-3: поле с самоцветами, щитами и персонажами в светящемся ночном лесу — акцент на атмосферном окружении вокруг игровой доски.",
+      en:"A fantasy match-3: a board of gems, shields and characters set in a glowing night forest — the focus is on the atmospheric scene around the board."
+    },
+    tags:["Mobile","Casual","Fantasy","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p67.jpg"],
+    title:{ ru:"Тайл Трио — triple match", en:"Tile Trio Rush — Triple Match" },
+    desc:{
+      ru:"Механика «собери три одинаковых»: россыпь предметов на доске, лоток на семь слотов с подсветкой пары, круговой таймер, цели уровня и четыре бустера.",
+      en:"A triple-match screen: scattered tiles on the board, a seven-slot tray highlighting a pair, a circular timer, level goals and four boosters."
+    },
+    tags:["Mobile","Casual","Puzzle","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p68.jpg"],
+    title:{ ru:"Блок Нова — блок-пазл", en:"Block Nova — Block Puzzle" },
+    desc:{
+      ru:"Блок-пазл 10×10: подсветка линии перед сгоранием, индикатор комбо, счёт и рекорд, три фигуры на подставке — одна «поднята» под перетаскивание.",
+      en:"A 10×10 block puzzle: the line about to clear is highlighted, a combo indicator, score and best, and three pieces in the tray with one lifted for dragging."
+    },
+    tags:["Mobile","Casual","Puzzle","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p69.jpg"],
+    title:{ ru:"Радужные Колбы — сортировка", en:"Ball Sort Deluxe — Sorting Puzzle" },
+    desc:{
+      ru:"Головоломка-сортировка: десять стеклянных колб с шарами, поднятый шар над выбранной колбой, собранная колба с подсветкой, кнопки отмены, подсказки и дополнительной колбы.",
+      en:"A sorting puzzle: ten glass tubes with balls, a lifted ball above the selected tube, a completed tube glowing, plus undo, hint and extra-tube buttons."
+    },
+    tags:["Mobile","Casual","Puzzle","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p70.jpg"],
+    title:{ ru:"Три Вершины — пасьянс", en:"TriPeaks Royal — Solitaire" },
+    desc:{
+      ru:"Пасьянс TriPeaks: три пирамиды рубашками, открытый ряд, колода с остатком карт, бустер-джокер, счёт, множитель комбо и таймер партии.",
+      en:"A TriPeaks solitaire: three face-down peaks, the open row, a deck with remaining count, a joker booster, score, combo multiplier and round timer."
+    },
+    tags:["Mobile","Cards","Solitaire","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p71.jpg"],
+    title:{ ru:"Море Слов — словесная игра", en:"WordSea — Word Puzzle" },
+    desc:{
+      ru:"Словесная головоломка: кроссворд с открытыми и пустыми клетками, колесо букв с проведённой линией, собранное слово и бонусные награды за дополнительные слова.",
+      en:"A word puzzle: a crossword with solved and empty cells, a letter wheel with the swipe path, the current word and bonus rewards for extra words."
+    },
+    tags:["Mobile","Casual","Words","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p72.jpg"],
+    title:{ ru:"Неон Дэш — раннер", en:"Neon Dash — Endless Runner" },
+    desc:{
+      ru:"Аркадный раннер в ночном городе: перспективная трасса на три полосы, монеты и препятствия, ворота-множитель, счёт и дистанция, бусты с таймером.",
+      en:"An endless runner through a neon city: a three-lane perspective road, coins and obstacles, a multiplier gate, score and distance, and timed power-ups."
+    },
+    tags:["Mobile","Arcade","Runner","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p73.jpg"],
+    title:{ ru:"Аква Поп — bubble shooter", en:"Aqua Pop Blast — Bubble Shooter" },
+    desc:{
+      ru:"Пузырьковый шутер: кластер шаров с особыми (бомба, звезда, лёд), пунктирная траектория с отскоком от стены, пушка с текущим и следующим шаром.",
+      en:"A bubble shooter: a cluster with special bubbles (bomb, star, ice), a dotted aim line bouncing off the wall, and a cannon with current and next bubble."
+    },
+    tags:["Mobile","Casual","Shooter","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p74.jpg"],
+    title:{ ru:"Небесный Прыжок — аркада", en:"Sky Leap — Vertical Arcade" },
+    desc:{
+      ru:"Вертикальная аркада-прыгалка: герой-облачко скачет по платформам, шкала прогресса до следующей цели, рекорд и вертикальная шкала майлстоунов.",
+      en:"A vertical jumping arcade: a cloud character hops between platforms, with a progress bar to the next goal, a best score and a vertical milestone scale."
+    },
+    tags:["Mobile","Arcade","Hyper-casual","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p75.jpg"],
+    title:{ ru:"Сочный Остров — фруктовый поп", en:"Juicy Pop Island — Fruit Shooter" },
+    desc:{
+      ru:"Тропический гибрид «три в ряд» и шутера: деревянное поле с фруктами, взрыв совпадения с подписями POP, пушка-ананас внизу и очередь следующих фруктов.",
+      en:"A tropical match-and-shoot hybrid: a wooden fruit board, a match burst with POP labels, a pineapple cannon at the bottom and a queue of upcoming fruit."
+    },
+    tags:["Mobile","Casual","Arcade","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p76.jpg"],
+    title:{ ru:"Фруктовый Взрыв — квест", en:"Fruit Burst Quest" },
+    desc:{
+      ru:"Двухзонный экран: сетка фруктов сверху и зона отстрела снизу, цель уровня с прогрессом, маскот-обезьянка у пушки и панель бустеров (радужный фрукт, фаербол).",
+      en:"A two-zone screen: a fruit grid on top and a shooting area below, a level goal with progress, a monkey mascot by the cannon and a booster bar (rainbow fruit, fireball)."
+    },
+    tags:["Mobile","Casual","Arcade","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p77.jpg"],
+    title:{ ru:"Бургер Босс — idle-тайкун", en:"Burger Boss Tycoon — Idle" },
+    desc:{
+      ru:"Idle-экономика: сцена кафе с поваром и очередью, всплывающие начисления, карточки апгрейдов с уровнем и доходом в секунду, буст ×3 за рекламу.",
+      en:"An idle tycoon: a cafe scene with a cook and a queue, floating income popups, upgrade cards with level and income per second, and a ×3 ad boost."
+    },
+    tags:["Mobile","Idle","Economy","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p78.jpg"],
+    title:{ ru:"Весёлая Грядка — ферма", en:"Happy Harvest — Farm" },
+    desc:{
+      ru:"Фермерский экран: девять грядок в трёх состояниях (готово к сбору, растёт с таймером, пустая), заказ от пекарни с наградой, слоты семян и кнопка общего сбора.",
+      en:"A farm screen: nine plots in three states (ready, growing with a timer, empty), a bakery order with its reward, seed slots and a harvest-all button."
+    },
+    tags:["Mobile","Farm","Simulation","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p79.jpg"],
+    title:{ ru:"Слизни Наступают — tower defense", en:"Slime Defense — Tower Defense" },
+    desc:{
+      ru:"Tower defense: извилистый путь от портала к базе, башни с радиусом атаки и уровнем, волна врагов с полосками здоровья, свободная точка под постройку и магазин башен.",
+      en:"A tower defense: a winding path from portal to base, towers with range and level, a wave of enemies with health bars, a free build spot and a tower shop."
+    },
+    tags:["Mobile","Strategy","Tower Defense","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p80.jpg"],
+    title:{ ru:"Долина Слияний — merge", en:"Merge Valley Story — Merge Puzzle" },
+    desc:{
+      ru:"Merge-головоломка: поле 5×7 с предметами уровней, подсветка готового слияния, энергия с таймером, заказ с прогрессом и генератор предметов.",
+      en:"A merge puzzle: a 5×7 board of levelled items, a highlighted ready merge, energy with a refill timer, an order with progress and an item generator."
+    },
+    tags:["Mobile","Merge","Puzzle","UI/UX"]
+  },
+  {
+    cat:"game",
+    img:[IMG+"p81.jpg"],
+    title:{ ru:"Звёздное Слияние — космос", en:"Celestial Merge Adventure" },
+    desc:{
+      ru:"Космическая вариация match/merge: поле с галактиками и планетами, двойная цель уровня, взрыв совпадения с начислением очков и маскот-космонавт.",
+      en:"A space take on match/merge: a board of galaxies and planets, a two-part level goal, a match burst with score popup and an astronaut mascot."
+    },
+    tags:["Mobile","Casual","Merge","UI/UX"]
+  },
+
   /* ---------- AI / LLM ---------- */
   {
     cat:"ai", featured:true,
@@ -361,6 +563,68 @@ const PROJECTS = [
       en:"A mobile runner arcade with in-app purchases, subscriptions and server-side transaction validation (YooKassa, Firebase Functions)."
     },
     tags:["Unity","IAP","Firebase","Mobile"]
+  },
+
+  /* ---------- MOBILE UI (Flutter concepts) ---------- */
+  {
+    cat:"mobile",
+    img:[IMG+"p56.jpg"],
+    title:{ ru:"Доставка еды — экран каталога", en:"Food Delivery — Catalog Screen" },
+    desc:{
+      ru:"Экран доставки еды на Flutter: адрес и время доставки, поиск, круглые категории, баннер ресторана с рейтингом и временем, список блюд с быстрым добавлением и липкая кнопка корзины.",
+      en:"A Flutter food-delivery screen: delivery address and ETA, search, round category icons, a restaurant banner with rating and time, a dish list with quick add and a sticky cart button."
+    },
+    tags:["Flutter","Material 3","UI/UX","Mobile"]
+  },
+  {
+    cat:"mobile",
+    img:[IMG+"p57.jpg"],
+    title:{ ru:"Погода — прогноз и детали", en:"Weather — Forecast Screen" },
+    desc:{
+      ru:"Погодный экран на Flutter: текущая температура с ощущаемой, почасовой ряд с иконками, недельный прогноз с диапазонами температур и плитки деталей — ветер, влажность, УФ-индекс.",
+      en:"A Flutter weather screen: current and feels-like temperature, an hourly strip with icons, a weekly forecast with temperature ranges and detail tiles — wind, humidity, UV index."
+    },
+    tags:["Flutter","Material 3","UI/UX","Mobile"]
+  },
+  {
+    cat:"mobile",
+    img:[IMG+"p58.jpg"],
+    title:{ ru:"Фитнес-трекер — сводка дня", en:"Fitness Tracker — Daily Summary" },
+    desc:{
+      ru:"Тёмная тема трекера активности: кольца целей по калориям, шагам и минутам, недельный график шагов, карточки пульса со спарклайном и сна с прогрессом к норме.",
+      en:"A dark-theme activity tracker: goal rings for calories, steps and minutes, a weekly steps chart, a heart-rate card with a sparkline and a sleep card with progress to target."
+    },
+    tags:["Flutter","Dark UI","Charts","Mobile"]
+  },
+  {
+    cat:"mobile",
+    img:[IMG+"p59.jpg"],
+    title:{ ru:"Такси — выбор тарифа", en:"Ride Hailing — Tariff Selection" },
+    desc:{
+      ru:"Экран заказа такси: стилизованная карта с маршрутом, пинами и машиной в пути, карточка адресов «откуда-куда», шторка с тарифами, способом оплаты и кнопкой заказа.",
+      en:"A ride-hailing screen: a stylised map with the route, pins and a car en route, a from-to address card, and a bottom sheet with tariffs, payment method and the order button."
+    },
+    tags:["Flutter","Maps","UI/UX","Mobile"]
+  },
+  {
+    cat:"mobile",
+    img:[IMG+"p60.jpg"],
+    title:{ ru:"ЖКХ — оплата газа и счётчик", en:"Utilities — Gas Bill & Meter" },
+    desc:{
+      ru:"Приложение поставщика газа: сумма к оплате со сроком, кнопка оплаты и квитанция, передача показаний счётчика по разрядам и график потребления по месяцам.",
+      en:"A gas utility app: the amount due with its deadline, a pay button and receipt link, digit-by-digit meter reading submission and a monthly consumption chart."
+    },
+    tags:["Flutter","Fintech","UI/UX","Mobile"]
+  },
+  {
+    cat:"mobile",
+    img:[IMG+"p61.jpg"],
+    title:{ ru:"Медитация и сон — плеер", en:"Meditation & Sleep — Player" },
+    desc:{
+      ru:"Концепт плеера для медитаций: ночной горный пейзаж во весь экран, минимальные элементы управления и дорожка воспроизведения — интерфейс не отвлекает от звука.",
+      en:"A meditation player concept: a full-screen night mountain scene, minimal transport controls and a progress track — an interface that stays out of the way of the audio."
+    },
+    tags:["UI/UX","Concept","Audio","Mobile"]
   },
 
   /* ---------- WEB / BACKEND ---------- */
